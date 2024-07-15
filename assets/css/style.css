@@ -1919,6 +1919,7 @@ body {
   --card-hover-icon-background-color: rgba(52, 211, 153, 0.1);
   --card-hover-icon-border-color: rgba(52, 211, 153, 0.2);
   --blur-opacity: .01;
+  overflow-x: hidden;
 }
 body.light {
   --background-color: #FAFAFA;
