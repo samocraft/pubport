@@ -1920,6 +1920,7 @@ body {
   --card-hover-icon-border-color: rgba(52, 211, 153, 0.2);
   --blur-opacity: .01;
   overflow-x: hidden;
+  width: 100%;
 }
 body.light {
   --background-color: #FAFAFA;
@@ -1951,6 +1952,7 @@ body.light {
   --card-hover-icon-background-color: rgba(24, 24, 27, 0.04);
   --card-hover-icon-border-color: rgba(24, 24, 27, 0.34);
   --blur-opacity: .1;
+  overflow-x: hidden;
 }
 body.toggle .grid * {
   transition-duration: 0s !important;
@@ -2349,19 +2351,9 @@ html {
 }
 
 * {
-  box-sizing: inherit;
-}
-*:before, *:after {
-  box-sizing: inherit;
+  box-sizing: 100%;
 }
 
-body:before {
-  content: "";
-  position: absolute;
-  inset: 0 -60% 65% -60%;
-  background-image: radial-gradient(ellipse at top, #10B981 0%, var(--background-color) 50%);
-  opacity: var(--blur-opacity);
-}
 body .twitter {
   position: fixed;
   display: block;
@@ -2383,4 +2375,14 @@ body .twitter svg {
 
 .img-wrapper img {
   display: none; /* Hide the actual image */
+}
+
+.container {
+  max-width: 100%; /* or a specific maximum width */
+  width: auto; /* Ensures it doesn't force overflow */
+}
+
+.element {
+  width: 100%; /* or max-width: 100%; */
+  /* Avoid fixed widths like width: 1200px; */
 }
