@@ -1,13 +1,15 @@
 <?php
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 require_once 'connection.php';
 
-$sql = "SELECT * FROM testbd_1";
-$portfolio = $conn->query($sql);
-
-
-
+$sql = "SELECT * FROM projects";
+$all_data = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -881,36 +883,35 @@ as HippiTounsy Errachma Oilybia and others.
             </ul>
 
           </div>
-          <?php
-             while($row =mysqli_fetch_assoc($portfolio)){
           
-          
-          ?>
           
           <ul class="project-list">
-
-            <li class="project-item  active" data-filter-item data-category="web/mobile app">
+          <?php if ($all_data): ?>
+            <?php foreach ($all_data as $row): ?>
+          <li class="project-item  active" data-filter-item data-category="<?php echo htmlspecialchars($row['category']); ?>">
               <a href="#">
 
                 <figure class="project-img">
                   <div class="project-item-icon-box">
                     <ion-icon name="eye-outline"></ion-icon>
                   </div>
-
-                  <img src="./assets/images/project-1.jpg" alt="finance" loading="lazy">
+                  <div class="img-wrapper" style="background-image: url('<?php echo htmlspecialchars($row['picture']); ?>');"></div>
                 </figure>
 
-                <h3 class="project-title">Finance</h3>
+                <h3 class="project-title"><?php echo htmlspecialchars($row['title']); ?></h3>
 
-                <p class="project-category">UI/UX design</p>
+                <p class="project-category"><?php echo htmlspecialchars($row['subtitle']); ?></p>
 
               </a>
             </li>
-            <?php
-             }
-          
-          
-          ?>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <li>No projects found.</li>
+        <?php endif; ?>
+    </ul>
+
+    </script>
+
 <!--
           rest of projects
         

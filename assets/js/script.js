@@ -158,3 +158,19 @@ for (let i = 0; i < navigationLinks.length; i++) {
   });
 }
 
+// Open the Modal
+function openModal(element) {
+  var modal = document.getElementById("myModal");
+  var modalImg = document.getElementById("img01");
+  var captionText = document.getElementById("caption");
+  
+  modal.style.display = "block";
+  modalImg.src = element.src;
+  captionText.innerHTML = element.alt;
+}
+
+// Close the Modal
+function closeModal() {
+  var modal = document.getElementById("myModal");
+  modal.style.display = "none";
+}
