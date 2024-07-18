@@ -1,13 +1,3 @@
-<?php
-
-require_once 'connection.php';
-
-$sql = "SELECT * FROM testbd_1";
-$portfolio = $conn->query($sql);
-
-
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -881,12 +871,7 @@ as HippiTounsy Errachma Oilybia and others.
             </ul>
 
           </div>
-          <?php
-             while($row =mysqli_fetch_assoc($portfolio)){
-          
-          
-          ?>
-          
+
           <ul class="project-list">
 
             <li class="project-item  active" data-filter-item data-category="web/mobile app">
@@ -906,14 +891,7 @@ as HippiTounsy Errachma Oilybia and others.
 
               </a>
             </li>
-            <?php
-             }
-          
-          
-          ?>
-<!--
-          rest of projects
-        
+
             <li class="project-item  active" data-filter-item data-category="web/mobile app">
               <a href="#">
 
@@ -1453,7 +1431,7 @@ as HippiTounsy Errachma Oilybia and others.
 
               </a>
             </li>
--->
+
           </ul>
 
         </section>
