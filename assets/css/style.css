@@ -14,7 +14,7 @@
 /*-----------------------------------*\
   #CUSTOM PROPERTY
 \*-----------------------------------*/
-
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100;500;900&display=swap");
 :root {
 
   /**
@@ -22,7 +22,9 @@
    */
 
   /* gradient */
-
+  --primary: #2a5fff;
+  --secondary: #fffff;
+  --border-color: #d4d7eb;
   --bg-gradient-onyx: linear-gradient(
     to bottom right, 
     hsl(240, 1%, 25%) 3%, 
@@ -153,10 +155,14 @@ input, textarea {
 
 :focus { outline-color: var(--orange-yellow-crayola); }
 
-html { font-family: var(--ff-poppins); }
+html { font-family: var(--ff-poppins); 
+
+
+
+
+}
 
 body { background: var(--smoky-black); }
-
 
 
 
@@ -727,7 +733,12 @@ main {
   line-height: 1.6;
 }
 
-
+.project-item .img-wrapper {
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 200px;
+}
 /**
  * #clients 
  */
@@ -881,7 +892,7 @@ main {
   #PORTFOLIO
 \*-----------------------------------*/
 
-.filter-list { display: none; }
+.filter-list { display: flex; }
 
 .filter-select-box {
   position: relative;
@@ -1447,36 +1458,7 @@ textarea.form-input::-webkit-resizer { display: none; }
     -webkit-line-clamp: 2;
   }
 
-  /* testimonials modal */
-
-  .modal-container { padding: 20px; }
-
-  .testimonials-modal {
-    display: flex;
-    justify-content: flex-start;
-    align-items: stretch;
-    gap: 25px;
-    padding: 30px;
-    border-radius: 20px;
-  }
-
-  .modal-img-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .modal-avatar-box {
-    border-radius: 18px;
-    margin-bottom: 0;
-  }
-
-  .modal-avatar-box img { width: 65px; }
-
-  .modal-img-wrapper > img {
-    display: block;
-    flex-grow: 1;
-    width: 35px;
+ 
   }
 
   /* clients */
@@ -1547,7 +1529,7 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .form-btn ion-icon { font-size: 18px; }
 
-}
+
 
 
 
@@ -1592,16 +1574,7 @@ textarea.form-input::-webkit-resizer { display: none; }
    * ABOUT
    */
 
-  /* testimonials modal */
-
-  .testimonials-modal {
-    gap: 35px;
-    max-width: 680px;
-  }
-
-  .modal-avatar-box img { width: 80px; }
-
-
+  
 
   /**
    * PORTFOLIO
@@ -1889,71 +1862,6 @@ textarea.form-input::-webkit-resizer { display: none; }
 
 }
 
-body {
-  --background-color: #18181B;
-  --text-color: #A1A1AA;
-  --card-background-color: rgba(255, 255, 255, .015);
-  --card-border-color: rgba(255, 255, 255, 0.1);
-  --card-box-shadow-1: rgba(0, 0, 0, 0.05);
-  --card-box-shadow-1-y: 3px;
-  --card-box-shadow-1-blur: 6px;
-  --card-box-shadow-2: rgba(0, 0, 0, 0.1);
-  --card-box-shadow-2-y: 8px;
-  --card-box-shadow-2-blur: 15px;
-  --card-label-color: #FFFFFF;
-  --card-icon-color: #D4D4D8;
-  --card-icon-background-color: rgba(255, 255, 255, 0.08);
-  --card-icon-border-color: rgba(255, 255, 255, 0.12);
-  --card-shine-opacity: .1;
-  --card-shine-gradient: conic-gradient(from 205deg at 50% 50%, rgba(16, 185, 129, 0) 0deg, #10B981 25deg, rgba(52, 211, 153, 0.18) 295deg, rgba(16, 185, 129, 0) 360deg);
-  --card-line-color: #2A2B2C;
-  --card-tile-color: rgba(16, 185, 129, 0.05);
-  --card-hover-border-color: rgba(255, 255, 255, 0.2);
-  --card-hover-box-shadow-1: rgba(0, 0, 0, 0.04);
-  --card-hover-box-shadow-1-y: 5px;
-  --card-hover-box-shadow-1-blur: 10px;
-  --card-hover-box-shadow-2: rgba(0, 0, 0, 0.3);
-  --card-hover-box-shadow-2-y: 15px;
-  --card-hover-box-shadow-2-blur: 25px;
-  --card-hover-icon-color: #34D399;
-  --card-hover-icon-background-color: rgba(52, 211, 153, 0.1);
-  --card-hover-icon-border-color: rgba(52, 211, 153, 0.2);
-  --blur-opacity: .01;
-  overflow-x: hidden;
-  width: 100%;
-}
-body.light {
-  --background-color: #FAFAFA;
-  --text-color: #52525B;
-  --card-background-color: transparent;
-  --card-border-color: rgba(24, 24, 27, 0.08);
-  --card-box-shadow-1: rgba(24, 24, 27, 0.02);
-  --card-box-shadow-1-y: 3px;
-  --card-box-shadow-1-blur: 6px;
-  --card-box-shadow-2: rgba(24, 24, 27, 0.04);
-  --card-box-shadow-2-y: 2px;
-  --card-box-shadow-2-blur: 7px;
-  --card-label-color: #18181B;
-  --card-icon-color: #18181B;
-  --card-icon-background-color: rgba(24, 24, 27, 0.04);
-  --card-icon-border-color: rgba(24, 24, 27, 0.1);
-  --card-shine-opacity: .3;
-  --card-shine-gradient: conic-gradient(from 225deg at 50% 50%, rgba(16, 185, 129, 0) 0deg, #10B981 25deg, #EDFAF6 285deg, #FFFFFF 345deg, rgba(16, 185, 129, 0) 360deg);
-  --card-line-color: #E9E9E7;
-  --card-tile-color: rgba(16, 185, 129, 0.08);
-  --card-hover-border-color: rgba(24, 24, 27, 0.15);
-  --card-hover-box-shadow-1: rgba(24, 24, 27, 0.05);
-  --card-hover-box-shadow-1-y: 3px;
-  --card-hover-box-shadow-1-blur: 6px;
-  --card-hover-box-shadow-2: rgba(24, 24, 27, 0.1);
-  --card-hover-box-shadow-2-y: 8px;
-  --card-hover-box-shadow-2-blur: 15px;
-  --card-hover-icon-color: #18181B;
-  --card-hover-icon-background-color: rgba(24, 24, 27, 0.04);
-  --card-hover-icon-border-color: rgba(24, 24, 27, 0.34);
-  --blur-opacity: .1;
-  overflow-x: hidden;
-}
 body.toggle .grid * {
   transition-duration: 0s !important;
 }
@@ -2386,3 +2294,142 @@ body .twitter svg {
   width: 100%; /* or max-width: 100%; */
   /* Avoid fixed widths like width: 1200px; */
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;1,300&display=swap');
+
+
+
+
+
+input[type="radio"] {
+  display: none;
+}
+
+label {
+  display: flex;
+  padding: 10px;
+  gap: 2em;
+  align-items: center;
+}
+
+.container {
+  width: 50px;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 50%;
+  box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+.cRadioBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #fff;
+  position: relative;
+  border: solid 5px var(--border-color);
+  box-sizing: border-box;
+  transition: all 0.1s ease-in;
+  cursor: pointer;
+}
+
+.cRadioBtn:hover {
+  border: solid 8px var(--primary);
+}
+
+.overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--secondary);
+}
+
+.check:checked + label > .container > .cRadioBtn > .overlay {
+  background: #fff;
+  animation: shrink 0.3s ease-in-out forwards;
+}
+
+.check:checked + label > .container > .cRadioBtn {
+  background: var(--primary);
+  border-color: var(--primary);
+}
+
+.drops {
+  position: absolute;
+  background: #fff;
+  top: -100%;
+  left: 50%;
+  transform: translate(-50%);
+  border-radius: 50%;
+  aspect-ratio: 1;
+}
+
+.lgDrop {
+  width: 50%;
+}
+
+.xsDrop {
+  width: 20%;
+}
+
+.mdDrop {
+  width: 30%;
+}
+
+.check:checked + label > .container > .cRadioBtn > .lgDrop {
+  animation: drop 0.5s ease-in-out forwards;
+}
+
+.check:checked + label > .container > .cRadioBtn > .mdDrop {
+  animation: drop 0.8s ease-in forwards;
+}
+
+.check:checked + label > .container > .cRadioBtn > .xsDrop {
+  animation: drop 0.9s linear forwards;
+}
+
+@keyframes drop {
+  0% {
+    top: -100%;
+  }
+  50% {
+    top: -100%;
+  }
+  75% {
+    top: 10%;
+  }
+  100% {
+    top: 25%;
+  }
+}
+
+@keyframes shrink {
+  0% {
+    width: 100%;
+  }
+  100% {
+    width: 0px;
+  }
+}
+
+.avatar-link {
+  display: inline-block;   /* Make the link behave like a block element */
+  text-decoration: none;   /* Remove underline from the link */
+  border: 2px solid #007BFF; /* Button-like border */
+  padding: 5px;           /* Add padding around the image */
+  border-radius: 5px;     /* Rounded corners */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+.avatar-box img {
+  display: block;           /* Ensure the image is displayed as a block element */
+  border-radius: 5px;      /* Optional: Make sure the image has rounded corners to match the button */
+}
+

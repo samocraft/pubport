@@ -1,6 +1,9 @@
 <?php
-
-// Ensure this path is correct based on your setup
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.html");
+    exit;
+}
 require_once 'connection.php';
 
 // Check if form is submitted
@@ -25,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Check file size
-    if ($_FILES["picture"]["size"] > 500000) {
+    if ($_FILES["picture"]["size"] > 5000000) {
         echo "Sorry, your file is too large.";
         $uploadOk = 0;
     }
@@ -46,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // File uploaded successfully, now insert data into database
             
             // Establish database connection
-            $conn = new mysqli("127.0.0.1", "root", "", "portfolio");
+            $conn = new mysqli("localhost", "root", "", "portfolio");
 
             // Check connection
             if ($conn->connect_error) {

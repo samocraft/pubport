@@ -1,4 +1,4 @@
-'use strict';
+
 
 
 
@@ -75,43 +75,7 @@ for (let i = 0; i < selectItems.length; i++) {
   });
 }
 
-// filter variables
-const filterItems = document.querySelectorAll("[data-filter-item]");
 
-const filterFunc = function (selectedValue) {
-
-  for (let i = 0; i < filterItems.length; i++) {
-
-    if (selectedValue === "all") {
-      filterItems[i].classList.add("active");
-    } else if (selectedValue === filterItems[i].dataset.category) {
-      filterItems[i].classList.add("active");
-    } else {
-      filterItems[i].classList.remove("active");
-    }
-
-  }
-
-}
-
-// add event in all filter button items for large screen
-let lastClickedBtn = filterBtn[0];
-
-for (let i = 0; i < filterBtn.length; i++) {
-
-  filterBtn[i].addEventListener("click", function () {
-
-    let selectedValue = this.innerText.toLowerCase();
-    selectValue.innerText = this.innerText;
-    filterFunc(selectedValue);
-
-    lastClickedBtn.classList.remove("active");
-    this.classList.add("active");
-    lastClickedBtn = this;
-
-  });
-
-}
 
 
 
@@ -174,3 +138,36 @@ function closeModal() {
   var modal = document.getElementById("myModal");
   modal.style.display = "none";
 }
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  // Select all filter buttons and project items
+  const filterButtons = document.querySelectorAll('[data-filter-btn]');
+  const projectItems = document.querySelectorAll('[data-filter-item]');
+
+  // Add click event to each filter button
+  filterButtons.forEach(button => {
+    button.addEventListener('click', function () {
+      const category = this.textContent.toLowerCase(); // Get the category from button text
+
+      // Remove 'active' class from all buttons, then add it to the clicked button
+      filterButtons.forEach(btn => btn.classList.remove('active'));
+      this.classList.add('active');
+
+      // Loop through each project item
+      projectItems.forEach(item => {
+        const itemCategory = item.getAttribute('data-category').toLowerCase();
+
+        // If 'All' is clicked or item matches the category, display it
+        if (category === 'all' || itemCategory === category) {
+          item.style.display = 'block';
+          item.classList.add('active');
+        } else {
+          // Hide items that don't match
+          item.style.display = 'none';
+          item.classList.remove('active');
+        }
+      });
+    });
+  });
+});
