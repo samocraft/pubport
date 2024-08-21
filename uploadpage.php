@@ -343,7 +343,7 @@ if (isset($_POST['logout'])) {
                 
       
                 <input type="text" id="subtitle" name="subtitle" class="form-input" placeholder="subtitle" >
-                <input type="file" id="picture" name="picture" class="form-input" accept="image/*" required placeholder="Add file" >
+                 <input type="file" name="file" accept="image/*,video/*" required> <!-- Changed to name="file" -->
                 
                 <div class="category-options">
                     <label for="web_mobile_app" style="color: #ffffff;">
