@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 if (!isset($_SESSION['user_id'])) {
@@ -16,16 +15,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // File upload handling
         $target_dir = "uploads/"; // Directory where uploaded files will be stored
-        $target_file = $target_dir . basename($_FILES["file"]["name"]);
+        $mediaFile = $_FILES["file"];
+        $target_file = $target_dir . basename($mediaFile["name"]);
         $uploadOk = 1;
-        $fileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+        $mediaFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-        // Check if file is an image or video
+        // Define allowed file types
         $allowedImageTypes = ['jpg', 'jpeg', 'png', 'gif'];
         $allowedVideoTypes = ['mp4', 'avi', 'mov'];
         $allowedTypes = array_merge($allowedImageTypes, $allowedVideoTypes);
 
-        if (in_array($fileType, $allowedTypes)) {
+        // Check if file type is allowed
+        if (in_array($mediaFileType, $allowedTypes)) {
             $uploadOk = 1;
         } else {
             echo "Sorry, only JPG, JPEG, PNG, GIF, MP4, AVI, and MOV files are allowed.";
@@ -33,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         // Check file size
-        if ($_FILES["file"]["size"] > 50000000) { // Increased size limit for videos
+        if ($mediaFile["size"] > 50000000) { // Increased size limit for videos
             echo "Sorry, your file is too large.";
             $uploadOk = 0;
         }
@@ -41,7 +42,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Check if $uploadOk is set to 0 by an error
         if ($uploadOk == 0) {
             echo "Sorry, your file was not uploaded.";
-        // if everything is ok, try to upload file
         } else {
             // Check for upload errors
             if ($_FILES["file"]["error"] !== UPLOAD_ERR_OK) {
@@ -72,6 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         break;
                 }
             } else {
+                // Move the file to the target directory first
                 if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
                     // File uploaded successfully, now insert data into database
                     
@@ -83,10 +84,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         die("Connection failed: " . $conn->connect_error);
                     }
 
+                    // Generate thumbnail for videos
+                    if (in_array($mediaFileType, $allowedVideoTypes)) {
+                        $thumbnail_file = $target_dir . pathinfo($target_file, PATHINFO_FILENAME) . '_thumb.png';
+                        // Execute FFmpeg to generate the video thumbnail
+                        $command = "ffmpeg -i \"$target_file\" -ss 00:00:01.000 -vframes 1 \"$thumbnail_file\"";
+                        exec($command, $output, $return_var);
+
+                        if ($return_var !== 0) {
+                            echo "Error generating thumbnail: " . implode("\n", $output);
+                            $thumbnail_file = ""; // If thumbnail generation fails
+                        }
+                    } else {
+                        // Set thumbnail as the image file if not a video
+                        $thumbnail_file = $target_file;
+                    }
+
                     // Prepare SQL statement and bind parameters
-                    $sql = "INSERT INTO projects (title, subtitle, category, file_name, file_type) VALUES (?, ?, ?, ?, ?)";
+                    $sql = "INSERT INTO projects (title, subtitle, category, file_name, file_type, thumbnail) VALUES (?, ?, ?, ?, ?, ?)";
                     $stmt = $conn->prepare($sql);
-                    $stmt->bind_param("sssss", $title, $subtitle, $category, $target_file, $fileType); // Added fileType
+                    $fileType = $mediaFileType; // Define fileType
+                    $stmt->bind_param("ssssss", $title, $subtitle, $category, $target_file, $fileType, $thumbnail_file);
 
                     // Execute the statement
                     if ($stmt->execute()) {
