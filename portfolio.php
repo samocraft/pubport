@@ -89,7 +89,7 @@ $all_data = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
           </div>
 
-          <ul class="project-list">
+            <ul class="project-list">
     <?php if ($all_data): ?>
         <?php foreach ($all_data as $row): ?>
             <li class="project-item active" data-filter-item data-category="<?php echo htmlspecialchars($row['category']); ?>">
@@ -104,11 +104,34 @@ $all_data = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
                     <p class="project-category"><?php echo htmlspecialchars($row['subtitle']); ?></p>
                 </a>
             </li>
+            <li class="project-item active" data-filter-item data-category="<?php echo htmlspecialchars($row['category']); ?>">
+                <a href="#" data-modal-open>
+                    <figure class="project-img">
+                        <div class="project-item-icon-box">
+                            <ion-icon name="eye-outline"></ion-icon>
+                        </div>
+
+
+                        <?php //var_dump($row);?>
+                        <?php if (strpos($row['file_type'], 'mp4') !== false): ?>
+                            <!-- Display thumbnail for videos -->
+                            <div class="img-wrapper" style="background-image: url('<?php echo htmlspecialchars($row['file_name']); ?>');"></div>
+
+                        <?php else: ?>
+                            <!-- Display image -->
+                            <div class="img-wrapper" style="background-image: url('<?php echo htmlspecialchars($row['thumbnail']); ?>');"></div>
+                        <?php endif; ?>
+                    </figure>
+                    <h3 class="project-title"><?php echo htmlspecialchars($row['title']); ?></h3>
+                    <p class="project-category"><?php echo htmlspecialchars($row['subtitle']); ?></p>
+                </a>
+            </li>
         <?php endforeach; ?>
     <?php else: ?>
         <li>No projects found.</li>
     <?php endif; ?>
 </ul>
+
 
 
 <!-- Modal for displaying images -->
