@@ -8,116 +8,82 @@ require_once 'connection.php';
 
 // Check if form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $title = $_POST['title'];
-    $subtitle = $_POST['subtitle'];
-    $category = $_POST['category'];
+    if (isset($_FILES["files"])) { // Multiple files handling
+        $title = $_POST['title'];
+        $subtitle = $_POST['subtitle'];
+        $category = $_POST['category'];
+        
 
-        // File upload handling
-        $target_dir = "uploads/"; // Directory where uploaded files will be stored
-        $mediaFile = $_FILES["file"];
-        $target_file = $target_dir . basename($mediaFile["name"]);
-        $uploadOk = 1;
-        $mediaFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+        // Establish database connection
+        $conn = new mysqli("localhost", "root", "", "portfolio");
 
-        // Define allowed file types
-        $allowedImageTypes = ['jpg', 'jpeg', 'png', 'gif'];
-        $allowedVideoTypes = ['mp4', 'avi', 'mov'];
-        $allowedTypes = array_merge($allowedImageTypes, $allowedVideoTypes);
-
-        // Check if file type is allowed
-        if (in_array($mediaFileType, $allowedTypes)) {
-            $uploadOk = 1;
-        } else {
-            echo "Sorry, only JPG, JPEG, PNG, GIF, MP4, AVI, and MOV files are allowed.";
-            $uploadOk = 0;
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
         }
 
-        // Check file size
-        if ($mediaFile["size"] > 50000000) { // Increased size limit for videos
-            echo "Sorry, your file is too large.";
-            $uploadOk = 0;
-        }
+        // Insert project info into 'projects' table
+        $sql_project = "INSERT INTO projects (title, subtitle, category) VALUES (?, ?, ?)";
+        $stmt_project = $conn->prepare($sql_project);
+        $stmt_project->bind_param("sss", $title, $subtitle, $category);
+        
+        if ($stmt_project->execute()) {
+            $project_id = $stmt_project->insert_id; // Get the project ID for the media table
+            $stmt_project->close();
+            
+            $target_dir = "uploads/";
 
-        // Check if $uploadOk is set to 0 by an error
-        if ($uploadOk == 0) {
-            echo "Sorry, your file was not uploaded.";
-        } else {
-            // Check for upload errors
-            if ($_FILES["file"]["error"] !== UPLOAD_ERR_OK) {
-                switch ($_FILES["file"]["error"]) {
-                    case UPLOAD_ERR_INI_SIZE:
-                        echo "The uploaded file exceeds the upload_max_filesize directive in php.ini.";
-                        break;
-                    case UPLOAD_ERR_FORM_SIZE:
-                        echo "The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form.";
-                        break;
-                    case UPLOAD_ERR_PARTIAL:
-                        echo "The uploaded file was only partially uploaded.";
-                        break;
-                    case UPLOAD_ERR_NO_FILE:
-                        echo "No file was uploaded.";
-                        break;
-                    case UPLOAD_ERR_NO_TMP_DIR:
-                        echo "Missing a temporary folder.";
-                        break;
-                    case UPLOAD_ERR_CANT_WRITE:
-                        echo "Failed to write file to disk.";
-                        break;
-                    case UPLOAD_ERR_EXTENSION:
-                        echo "A PHP extension stopped the file upload.";
-                        break;
-                    default:
-                        echo "Unknown upload error.";
-                        break;
-                }
-            } else {
-                // Move the file to the target directory first
-                if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
-                    // File uploaded successfully, now insert data into database
-                    
-                    // Establish database connection
-                    $conn = new mysqli("localhost", "root", "", "portfolio");
+            foreach ($_FILES["files"]["tmp_name"] as $key => $tmp_name) {
+                $mediaFile = $_FILES["files"]["name"][$key];
+                $target_file = $target_dir . basename($mediaFile);
+                $mediaFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-                    // Check connection
-                    if ($conn->connect_error) {
-                        die("Connection failed: " . $conn->connect_error);
-                    }
+                // Define allowed file types
+                $allowedImageTypes = ['jpg', 'jpeg', 'png', 'gif'];
+                $allowedVideoTypes = ['mp4', 'avi', 'mov'];
+                $allowedTypes = array_merge($allowedImageTypes, $allowedVideoTypes);
 
-                    // Generate thumbnail for videos
-                    if (in_array($mediaFileType, $allowedVideoTypes)) {
-                        $thumbnail_file = $target_dir . pathinfo($target_file, PATHINFO_FILENAME) . '_thumb.png';
-                        // Execute FFmpeg to generate the video thumbnail
-                        $command = "ffmpeg -i \"$target_file\" -ss 00:00:01.000 -vframes 1 \"$thumbnail_file\"";
-                        exec($command, $output, $return_var);
+                if (in_array($mediaFileType, $allowedTypes)) {
+                    if ($_FILES["files"]["size"][$key] <= 50000000) { // Check file size
+                        if (move_uploaded_file($_FILES["files"]["tmp_name"][$key], $target_file)) {
+                            // Generate thumbnail for videos
+                            if (in_array($mediaFileType, $allowedVideoTypes)) {
+                                $thumbnail_file = $target_dir . pathinfo($target_file, PATHINFO_FILENAME) . '_thumb.png';
+                                $command = "ffmpeg -i \"$target_file\" -ss 00:00:01.000 -vframes 1 \"$thumbnail_file\"";
+                                exec($command, $output, $return_var);
 
-                        if ($return_var !== 0) {
-                            echo "Error generating thumbnail: " . implode("\n", $output);
-                            $thumbnail_file = ""; // If thumbnail generation fails
+                                if ($return_var !== 0) {
+                                    $thumbnail_file = ""; // Thumbnail generation failed
+                                }
+                            } else {
+                                // Set thumbnail as the image file itself if not a video
+                                $thumbnail_file = $target_file;
+                            }
+
+                            // Insert each file into the media table
+                           
+                            $sql_media = "INSERT INTO media (project_id, media_file, media_type, thumbnail, position) VALUES (?, ?, ?, ?, ?)";
+                            $stmt_media = $conn->prepare($sql_media);
+                            $stmt_media->bind_param("isssi", $project_id, $target_file, $mediaFileType, $thumbnail_file, $position);
+
+                            if (!$stmt_media->execute()) {
+                                echo "Error inserting media: " . $conn->error;
+                            }
+                            $stmt_media->close();
                         }
                     } else {
-                        // Set thumbnail as the image file if not a video
-                        $thumbnail_file = $target_file;
+                        echo "File is too large.";
                     }
-
-                    // Prepare SQL statement and bind parameters
-                    $sql = "INSERT INTO projects (title, subtitle, category, file_name, file_type, thumbnail) VALUES (?, ?, ?, ?, ?, ?)";
-                    $stmt = $conn->prepare($sql);
-                    $fileType = $mediaFileType; // Define fileType
-                    $stmt->bind_param("ssssss", $title, $subtitle, $category, $target_file, $fileType, $thumbnail_file);
-
-            // Execute the statement
-            if ($stmt->execute()) {
-                echo "Project information uploaded successfully.";
-            } else {
-                echo "Error: " . $sql . "<br>" . $conn->error;
+                } else {
+                    echo "Invalid file type.";
+                }
             }
-
-            // Close statement and connection
-            $stmt->close();
-            $conn->close();
         } else {
-            echo "Sorry, there was an error uploading your file.";
+            echo "Error inserting project: " . $conn->error;
         }
+        
+        $conn->close();
+    } else {
+        echo "No files were uploaded.";
     }
 }
 ?>
