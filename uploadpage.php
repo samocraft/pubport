@@ -334,18 +334,28 @@ if (isset($_POST['logout'])) {
   
           <section class="contact-form">
       
-            <h3 class="h3 form-title">add project</h3>
+            
       
-            <form action="uploadold.php" class="form" data-form method="POST" enctype="multipart/form-data">
-      
-              <div class="input-wrapper">
-                <input type="text" id="title" name="title" required class="form-input" placeholder="title">
-                
-      
-                <input type="text" id="subtitle" name="subtitle" class="form-input" placeholder="subtitle" >
-                 <input type="file" name="file" accept="image/*,video/*" required> <!-- Changed to name="file" -->
-                
-                <div class="category-options">
+          
+                 <!-- Updated Form -->
+                 <form action="uploadold.php" class="form" data-form method="POST" enctype="multipart/form-data">
+                    <div class="input-wrapper">
+                        <input type="text" id="title" name="title" required class="form-input" placeholder="title">
+                        <input type="text" id="subtitle" name="subtitle" class="form-input" placeholder="subtitle">
+                        
+                        <!-- Multiple file inputs for images and videos -->
+                        <label for="images">Upload Images</label>
+                        <input type="file" id="images" name="files[]" accept="image/*" multiple required class="form-input">
+
+                        <label for="videos">Upload Videos</label>
+                        <input type="file" id="videos" name="files[]" accept="video/*" multiple required class="form-input">
+
+                        <!-- Thumbnail selection -->
+                        <label for="thumbnail">Select Thumbnail</label>
+                        <input type="file" id="thumbnail" name="thumbnail" accept="image/*" required class="form-input">
+
+                        <!-- Category Options (unchanged) -->
+                        <div class="category-options">
                     <label for="web_mobile_app" style="color: #ffffff;">
                         <input type="radio" id="web_mobile_app" name="category" value="web/mobile app" required>
                         <span class="custom-radio custom-primary">Web/Mobile App</span>
@@ -370,19 +380,16 @@ if (isset($_POST['logout'])) {
                         <input type="radio" id="3d_animations_vfx" name="category" value="3d animations/vfx" required>
                         <span class="custom-radio custom-senary">3d animations/vfx</span>
                     </label>
-                </div><br><br>
-            
-        
-              
-    
-      
-              
-      
-              <button class="form-btn" type="submit" >
-                <ion-icon name="paper-plane"></ion-icon>
-                <span>upload</span>
-              </button>
-              </form>
+                </div>
+                        <br><br>
+
+                        <!-- Submission button -->
+                        <button class="form-btn" type="submit">
+                            <ion-icon name="paper-plane"></ion-icon>
+                            <span>Upload</span>
+                        </button>
+                    </div>
+                </form>
 
               
             <form action="logout.php" class="form" data-form method="POST" enctype="multipart/form-data">
