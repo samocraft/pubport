@@ -25,7 +25,7 @@ if (isset($_GET['id'])) {
     }
 
     // Fetch the associated media for the project
-    $mediaStmt = $pdo->prepare("SELECT media_file, media_type, thumbnail, position FROM media WHERE project_id = :project_id ORDER BY position ASC");
+    $mediaStmt = $pdo->prepare("SELECT media_file, media_type, position FROM media WHERE project_id = :project_id ORDER BY position ASC");
     $mediaStmt->bindParam(':project_id', $id, PDO::PARAM_INT);
     $mediaStmt->execute();
     $mediaItems = $mediaStmt->fetchAll(PDO::FETCH_ASSOC);
