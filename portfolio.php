@@ -1,15 +1,13 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+include 'connection.php'; // Include your database connection file
 
-require_once 'connection.php'; // Ensure 'connection.php' uses PDO or mysqli consistently
-
-// Fetch all projects with their media files
-$sql = "SELECT p.id, p.title, p.subtitle, p.category, m.media_file, m.media_type, m.thumbnail 
-        FROM projects p
-        LEFT JOIN media m ON p.id = m.project_id";
-$all_data = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+try {
+    $stmt = $pdo->prepare("SELECT * FROM projects");
+    $stmt->execute();
+    $all_data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();
+}
 ?>
 
 <!DOCTYPE html>
@@ -175,30 +173,29 @@ $all_data = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
     <!-- List of projects -->
     <ul class="project-list">
-        <?php if ($all_data): ?>
-            <?php foreach ($all_data as $row): ?>
-    <li class="project-item active" data-filter-item data-category="<?php echo htmlspecialchars($row['category']); ?>">
-        <?php if (isset($row['id'])): ?>
-            <a href="#" class="open-overlay" data-project-id="<?php echo $row['id']; ?>">
-                <figure class="project-img">
-                    <div class="project-item-icon-box">
-                        <ion-icon name="eye-outline"></ion-icon>
-                    </div>
-                    <div class="img-wrapper" style="background-image: url('<?php echo htmlspecialchars($row['thumbnail']); ?>');"></div>
-                </figure>
-                <h3 class="project-title"><?php echo htmlspecialchars($row['title']); ?></h3>
-                <p class="project-category"><?php echo htmlspecialchars($row['subtitle']); ?></p>
-            </a>
-        <?php else: ?>
-            <p>Project data is incomplete.</p>
-        <?php endif; ?>
-    </li>
-<?php endforeach; ?>
-
-        <?php else: ?>
-            <li>No projects found.</li>
-        <?php endif; ?>
-    </ul>
+    <?php if ($all_data): ?>
+        <?php foreach ($all_data as $row): ?>
+            <li class="project-item active" data-filter-item data-category="<?php echo htmlspecialchars($row['category']); ?>">
+                <?php if (isset($row['id'])): ?>
+                    <a href="#" class="open-overlay" data-project-id="<?php echo $row['id']; ?>">
+                        <figure class="project-img">
+                            <div class="project-item-icon-box">
+                                <ion-icon name="eye-outline"></ion-icon>
+                            </div>
+                            <div class="img-wrapper" style="background-image: url('<?php echo htmlspecialchars($row['thumbnail']); ?>');"></div>
+                        </figure>
+                        <h3 class="project-title"><?php echo htmlspecialchars($row['title']); ?></h3>
+                        <p class="project-category"><?php echo htmlspecialchars($row['subtitle']); ?></p>
+                    </a>
+                <?php else: ?>
+                    <p>Project data is incomplete.</p>
+                <?php endif; ?>
+            </li>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <li>No projects found.</li>
+    <?php endif; ?>
+</ul>
 
 </section>
 
