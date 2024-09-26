@@ -184,118 +184,7 @@ if (isset($_POST['logout'])) {
   
     <main>
   
-      <!--
-        - #SIDEBAR
-      -->
-  
-      <aside class="sidebar" data-sidebar>
-  
-        <div class="sidebar-info">
-  
-          <figure class="avatar-box">
-            <img src="./assets/images/my-avatar.png" alt="Seddiki Oussama" width="80">
-          </figure>
-  
-          <div class="info-content">
-            <h1 class="name" title="Seddiki Oussama">Seddiki Oussama</h1>
-  
-            <p class="title">Artistic director</p>
-          </div>
-  
-          <button class="info_more-btn" data-sidebar-btn>
-            <span>Show Contacts</span>
-  
-            <ion-icon name="chevron-down"></ion-icon>
-          </button>
-  
-        </div>
-  
-        <div class="sidebar-info_more">
-  
-          <div class="separator"></div>
-  
-          <ul class="contacts-list">
-  
-            <li class="contact-item">
-  
-              <div class="icon-box">
-                <ion-icon name="mail-outline"></ion-icon>
-              </div>
-  
-              <div class="contact-info">
-                <p class="contact-title">Email</p>
-  
-                <a href="sdioussama2@gmail.com" class="contact-link">sdioussama2@gmail.com</a>
-              </div>
-  
-            </li>
-  
-            <li class="contact-item">
-  
-              <div class="icon-box">
-                <ion-icon name="phone-portrait-outline"></ion-icon>
-              </div>
-  
-              <div class="contact-info">
-                <p class="contact-title">Phone</p>
-  
-                <a href="tel:+12133522795" class="contact-link">+213 779972316</a>
-              </div>
-  
-            </li>
-  
-  
-            <li class="contact-item">
-  
-              <div class="icon-box">
-                <ion-icon name="location-outline"></ion-icon>
-              </div>
-  
-              <div class="contact-info">
-                <p class="contact-title">Location</p>
-  
-                <address>Algiers algeria</address>
-              </div>
-  
-            </li>
-  
-          </ul>
-  
-          <div class="separator"></div>
-  
-          <ul class="social-list">
-  
-            <li class="social-item">
-              <a href="#" class="social-link">
-                <ion-icon name="logo-facebook"></ion-icon>
-              </a>
-            </li>
-  
-            <li class="social-item">
-              <a href="#" class="social-link">
-                <ion-icon name="logo-twitter"></ion-icon>
-              </a>
-            </li>
-  
-            <li class="social-item">
-              <a href="#" class="social-link">
-                <ion-icon name="logo-instagram"></ion-icon>
-              </a>
-            </li>
-  
-          </ul>
-  
-        </div>
-  
-      </aside>
-  
-  
-  
-  
-  
-      <!--
-        - #main-content
-      -->
+      
   
       <div class="main-content">
   
@@ -384,17 +273,19 @@ if (isset($_POST['logout'])) {
                         <br><br>
 
                         <!-- Submission button -->
-                        <button class="form-btn" type="submit">
+                        <div style="display: flex; justify-content: center; align-items: center;">
+                          <button class="form-btn" type="submit" >
                             <ion-icon name="paper-plane"></ion-icon>
                             <span>Upload</span>
-                        </button>
+                          </button>
+                        </div>
                     </div>
                 </form>
 
               
-            <form action="logout.php" class="form" data-form method="POST" enctype="multipart/form-data">
+            
 
-              <button class="form-btn" type="submit" value="Logout">
+              <button class="form-btn" type="submit" value="Logout" style="display: flex; justify-content: center; align-items: center;">
               <ion-icon name="exit-outline"></ion-icon>
                 <span>logout</span>
               </button>
@@ -409,7 +300,7 @@ if (isset($_POST['logout'])) {
 </a>
 
               
-              </form>
+              
              
 
       

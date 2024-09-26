@@ -154,22 +154,74 @@ try {
 
     <!-- Filter select for mobile/responsive design -->
     <div class="filter-select-box">
-        <button class="filter-select" data-select>
-            <div class="select-value" data-selecct-value>Select category</div>
-            <div class="select-icon">
+
+            <button class="filter-select" data-select>
+
+              <div class="select-value" data-selecct-value>Select category</div>
+
+              <div class="select-icon">
                 <ion-icon name="chevron-down"></ion-icon>
-            </div>
-        </button>
-        <ul class="select-list">
-            <li class="select-item"><button data-select-item>All</button></li>
-            <li class="select-item"><button data-select-item>web/mobile app</button></li>
-            <li class="select-item"><button data-select-item>Infographics</button></li>
-            <li class="select-item"><button data-select-item>Video editing</button></li>
-            <li class="select-item"><button data-select-item>motion graphics</button></li>
-            <li class="select-item"><button data-select-item>3D art</button></li>
-            <li class="select-item"><button data-select-item>3D animations/VFX</button></li>
-        </ul>
-    </div>
+              </div>
+
+            </button>
+
+            <ul class="select-list">
+
+              <li class="select-item">
+                <button data-select-item>All</button>
+              </li>
+
+              <li class="select-item">
+                <button data-select-item>Web design</button>
+              </li>
+
+              <li class="select-item">
+                <button data-select-item>Applications</button>
+              </li>
+
+              <li class="select-item">
+                <button data-select-item>Web development</button>
+              </li>
+
+            </ul>
+
+          </div>
+
+          <script>
+            document.addEventListener('DOMContentLoaded', function () {
+  // Select all filter buttons and project items
+  const filterButtons = document.querySelectorAll('[data-filter-btn]');
+  const projectItems = document.querySelectorAll('[data-filter-item]');
+
+  // Add click event to each filter button
+  filterButtons.forEach(button => {
+    button.addEventListener('click', function () {
+      const category = this.textContent.toLowerCase(); // Get the category from button text
+
+      // Remove 'active' class from all buttons, then add it to the clicked button
+      filterButtons.forEach(btn => btn.classList.remove('active'));
+      this.classList.add('active');
+
+      // Loop through each project item
+      projectItems.forEach(item => {
+        const itemCategory = item.getAttribute('data-category').toLowerCase();
+
+        // If 'All' is clicked or item matches the category, display it
+        if (category === 'all' || itemCategory === category) {
+          item.style.display = 'block';
+          item.classList.add('active');
+        } else {
+          // Hide items that don't match
+          item.style.display = 'none';
+          item.classList.remove('active');
+        }
+      });
+    });
+  });
+});
+          </script>
+
+
 
     <!-- List of projects -->
     <ul class="project-list">

@@ -140,34 +140,4 @@ function closeModal() {
 }
 
 
-document.addEventListener('DOMContentLoaded', function () {
-  // Select all filter buttons and project items
-  const filterButtons = document.querySelectorAll('[data-filter-btn]');
-  const projectItems = document.querySelectorAll('[data-filter-item]');
 
-  // Add click event to each filter button
-  filterButtons.forEach(button => {
-    button.addEventListener('click', function () {
-      const category = this.textContent.toLowerCase(); // Get the category from button text
-
-      // Remove 'active' class from all buttons, then add it to the clicked button
-      filterButtons.forEach(btn => btn.classList.remove('active'));
-      this.classList.add('active');
-
-      // Loop through each project item
-      projectItems.forEach(item => {
-        const itemCategory = item.getAttribute('data-category').toLowerCase();
-
-        // If 'All' is clicked or item matches the category, display it
-        if (category === 'all' || itemCategory === category) {
-          item.style.display = 'block';
-          item.classList.add('active');
-        } else {
-          // Hide items that don't match
-          item.style.display = 'none';
-          item.classList.remove('active');
-        }
-      });
-    });
-  });
-});
