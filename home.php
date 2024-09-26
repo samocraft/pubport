@@ -10,7 +10,7 @@ $sql = "SELECT * FROM projects";
 $all_data = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-
+<br><br>
         <header>
           <h2 class="h2 article-title">About me</h2>
         </header>
@@ -37,7 +37,7 @@ $all_data = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
         <section class="service">
 
-          <h3 class="h3 service-title">What i'm doing</h3>
+          <h3 class="h3 service-title">What I do</h3>
 
           <ul class="service-list">
 
@@ -79,22 +79,6 @@ $all_data = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
             <li class="service-item">
 
               <div class="service-icon-box">
-                <img src="./assets/images/icon-Branding.svg" alt="camera icon" width="40">
-              </div>
-
-              <div class="service-content-box">
-                <h4 class="h4 service-item-title">Branding</h4>
-
-                <p class="service-item-text">
-                  whatever your field is i will make your brand Unbelievably unforgotten.
-                </p>
-              </div>
-
-            </li>
-
-            <li class="service-item">
-
-              <div class="service-icon-box">
                 <img src="./assets/images/icon-video.svg
                 " alt="design icon" width="40">
               </div>
@@ -122,24 +106,6 @@ $all_data = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
                 <p class="service-item-text">
                   from all my experience in making 3d animation and vfx for VR experiences, games and advertisement videos i can provide 
                   a well done 3d aniamtions to impress your targeted audience.
-                </p>
-              </div>
-
-            </li>
-
-            <li class="service-item">
-
-              <div class="service-icon-box">
-                <img src="./assets/images/icon-marketing.svg
-                " alt="design icon" width="40">
-              </div>
-
-              <div class="service-content-box">
-                <h4 class="h4 service-item-title">Marketing and business developement</h4>
-
-                <p class="service-item-text">
-                  after deep research in psychology and community managment and the art of negociations i am able 
-                  to create marketing strategies and negociating deals within the teams i work with and potential clients.
                 </p>
               </div>
 
@@ -282,55 +248,3 @@ $all_data = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
           </section>
 
         </div>
-
-
-        <!--
-          - clients
-        
-
-        <section class="clients">
-
-          <h3 class="h3 clients-title">Clients</h3>
-
-          <ul class="clients-list has-scrollbar">
-
-            <li class="clients-item">
-              <a href="#">
-                <img src="./assets/images/logo-1-color.png" alt="client logo">
-              </a>
-            </li>
-
-            <li class="clients-item">
-              <a href="#">
-                <img src="./assets/images/logo-2-color.png" alt="client logo">
-              </a>
-            </li>
-
-            <li class="clients-item">
-              <a href="#">
-                <img src="./assets/images/logo-3-color.png" alt="client logo">
-              </a>
-            </li>
-
-            <li class="clients-item">
-              <a href="#">
-                <img src="./assets/images/logo-4-color.png" alt="client logo">
-              </a>
-            </li>
-
-            <li class="clients-item">
-              <a href="#">
-                <img src="./assets/images/logo-5-color.png" alt="client logo">
-              </a>
-            </li>
-
-            <li class="clients-item">
-              <a href="#">
-                <img src="./assets/images/logo-6-color.png" alt="client logo">
-              </a>
-            </li>
-
-          </ul>
-
-        </section>
--->

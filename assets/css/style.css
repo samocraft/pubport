@@ -879,8 +879,6 @@ main {
   #PORTFOLIO
 \*-----------------------------------*/
 
-.filter-list { display: flex; }
-
 .filter-select-box {
   position: relative;
   margin-bottom: 25px;

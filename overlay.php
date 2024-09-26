@@ -48,10 +48,21 @@ function safe_escape($value) {
 }
 ?>
 
+
 <div class="modalover-content">
     <div class="project-details">
+      <div style="display: flex;
+          justify-content: center;
+          align-items: center;">
         <h1 class="h2"><?php echo safe_escape($project['title']); ?></h1>
-        <p class="subtitle"><?php echo safe_escape($project['subtitle']); ?></p>
+      </div>
+
+      <div style="display: flex;
+          justify-content: center;
+          align-items: center;">
+          <p class="project-category"><?php echo safe_escape($project['subtitle']); ?></p>
+          </div>
+        
     </div>
 
     <!-- Project gallery (images/videos) -->
@@ -71,10 +82,11 @@ function safe_escape($value) {
             <?php endif; ?>
         <?php endforeach; ?>
     </div>
+    <br><br>
 
     <!-- Similar Projects -->
-    <div class="similar-projects">
-        <h2>Similar Projects</h2>
+    <div class="h2" style="display: flex; justify-content: center; align-items: center;"><h2>Similar Projects</h2></div>
+        
         <?php foreach ($similarProjects as $similar): ?>
             <div class="project-card">
                 <a href="#" class="open-overlay" data-project-id="<?php echo safe_escape($similar['id']); ?>">
@@ -141,9 +153,9 @@ function safe_escape($value) {
           opacity: 0;
           transition: var(--transition-1);
           z-index: 2;
-          width: 60%; /* Fixed width */
-          max-width: 800px; /* Limit max width */
-          max-height: 90vh; /* Keep the modal within viewport */
+          width: 90%; /* Fixed width */
+          max-width: 1500px; /* Limit max width */
+          max-height: 90%; /* Keep the modal within viewport */
           margin: 10vh auto;
           overflow-y: auto; /* Enable internal scrolling */
           
@@ -184,15 +196,35 @@ function safe_escape($value) {
           margin-bottom: 4px;
         }
         
-        .project-gallery img,
-        .project-gallery video {
-          max-width: 100%;
-          justify-content: center;
-          ;
-        }
+        /* Set consistent width for all media (images and videos) */
+.project-gallery img,
+.project-gallery video {
+  width: 100%; /* This ensures all media takes up the full width of the container */
+  height: auto; /* Maintains aspect ratio */
+  display: block;
+  margin: 0 auto; /* Center the media horizontally */
+  max-width: 100%; /* Optionally, set a maximum width */
+}
         
         .modalover-content {
           padding: 15px;
           justify-content: center;
         }
+        ::-webkit-scrollbar { width: 20px; }
+
+::-webkit-scrollbar-track { background: var(--smoky-black); border-radius: 20px;}
+
+::-webkit-scrollbar-thumb {
+  border: 5px solid var(--smoky-black);
+  background: hsla(0, 0%, 100%, 0.1);
+  border-radius: 20px;
+  box-shadow: inset 1px 1px 0 hsla(0, 0%, 100%, 0.11),
+              inset -1px -1px 0 hsla(0, 0%, 100%, 0.11);
+}
+
+::-webkit-scrollbar-thumb:hover { background: hsla(0, 0%, 100%, 0.15); }
+
+::-webkit-scrollbar-button { height: 700%; }
+
+        
             </style>
