@@ -85,17 +85,33 @@ function safe_escape($value) {
     <br><br>
 
     <!-- Similar Projects -->
-    <div class="h2" style="display: flex; justify-content: center; align-items: center;"><h2>Similar Projects</h2></div>
-        
+
+<div class="h2" style="display: flex; justify-content: center; align-items: center;">
+    <h2>Similar Projects</h2>
+</div>
+
+<ul class="project-list">
+    <?php if (!empty($similarProjects)): ?>
         <?php foreach ($similarProjects as $similar): ?>
-            <div class="project-card">
-                <a href="#" class="open-overlay" data-project-id="<?php echo safe_escape($similar['id']); ?>">
-                    <img src="<?php echo safe_escape($similar['thumbnail']); ?>" alt="<?php echo safe_escape($similar['title']); ?>">
-                    <h3><?php echo safe_escape($similar['title']); ?></h3>
+            <li class="project-item active" data-filter-item data-category="<?php echo htmlspecialchars($similar['category'] ?? ''); ?>">
+                <a href="#" class="open-overlay" data-project-id="<?php echo htmlspecialchars($similar['id']); ?>">
+                    <figure class="project-img">
+                        <div class="project-item-icon-box">
+                            <ion-icon name="eye-outline"></ion-icon>
+                        </div>
+                        <div class="img-wrapper" style="background-image: url('<?php echo htmlspecialchars($similar['thumbnail']); ?>');"></div>
+                    </figure>
+                    <h3 class="project-title"><?php echo htmlspecialchars($similar['title']); ?></h3>
+                    <p class="project-category"><?php echo htmlspecialchars($similar['subtitle'] ?? ''); ?></p>
                 </a>
-            </div>
+            </li>
         <?php endforeach; ?>
-    </div>
+    <?php else: ?>
+        <li>No similar projects found.</li>
+    <?php endif; ?>
+</ul>
+
+
 </div>
 
 <!-- Your CSS for the overlaypage -->
