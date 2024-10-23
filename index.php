@@ -60,11 +60,11 @@ $all_data = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
       <div class="sidebar-info">
 
       
-      <a href="uploadpage.php">
+
   <figure class="avatar-box">
     <img src="./assets/images/my-avatar.png" alt="Seddiki Oussama" width="80">
   </figure>
-</a>
+
       
 
         <div class="info-content">
