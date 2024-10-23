@@ -1,4 +1,8 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 session_start();
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.html");
@@ -234,10 +238,10 @@ if (isset($_POST['logout'])) {
                         
                         <!-- Multiple file inputs for images and videos -->
                         <label for="images">Upload Images</label>
-                        <input type="file" id="images" name="files[]" accept="image/*" multiple class="form-input">
+                        <input type="file" id="images" name="files[]" accept="image/*" multiple required class="form-input">
 
                         <label for="videos">Upload Videos</label>
-                        <input type="file" id="videos" name="files[]" accept="video/*" multiple class="form-input">
+                        <input type="file" id="videos" name="files[]" accept="video/*" multiple required class="form-input">
 
                         <!-- Thumbnail selection -->
                         <label for="thumbnail">Select Thumbnail</label>
