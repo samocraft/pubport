@@ -3,8 +3,11 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 include 'connection.php'; // Include your database connection file
 =======
+=======
+>>>>>>> parent of 0140e45 (video view/upload lts)
 =======
 >>>>>>> parent of 0140e45 (video view/upload lts)
 =======
@@ -245,6 +248,7 @@ try {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <?php if (isset($row['id'])): ?>
                     <a href="#" class="open-overlay" data-project-id="<?php echo $row['id']; ?>">
                         <figure class="project-img">
@@ -264,6 +268,8 @@ try {
 >>>>>>> parent of 0140e45 (video view/upload lts)
 =======
 >>>>>>> parent of 0140e45 (video view/upload lts)
+=======
+>>>>>>> parent of 0140e45 (video view/upload lts)
                 <a href="#" class="project-link" data-image-url="<?php echo htmlspecialchars($row['picture']); ?>" data-title="<?php echo htmlspecialchars($row['title']); ?>" data-subtitle="<?php echo htmlspecialchars($row['subtitle']); ?>">
                     <figure class="project-img">
                         <div class="project-item-icon-box">
@@ -276,6 +282,9 @@ try {
                 </a>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of 0140e45 (video view/upload lts)
+=======
 >>>>>>> parent of 0140e45 (video view/upload lts)
 =======
 >>>>>>> parent of 0140e45 (video view/upload lts)
@@ -293,6 +302,7 @@ try {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <!-- modalover Container -->
 <div class="modalover-container" id="modaloverContainer">
     <div class="testimonials-modalover">
@@ -303,6 +313,8 @@ try {
     </div>
     <div class="overlaypage" id="overlaypage"></div>
 =======
+=======
+>>>>>>> parent of 0140e45 (video view/upload lts)
 =======
 >>>>>>> parent of 0140e45 (video view/upload lts)
 =======
@@ -327,6 +339,9 @@ try {
   </section>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of 0140e45 (video view/upload lts)
+=======
 >>>>>>> parent of 0140e45 (video view/upload lts)
 =======
 >>>>>>> parent of 0140e45 (video view/upload lts)
@@ -349,7 +364,10 @@ document.addEventListener('DOMContentLoaded', function () {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of 0140e45 (video view/upload lts)
 =======
 >>>>>>> parent of 0140e45 (video view/upload lts)
 =======
