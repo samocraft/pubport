@@ -1,6 +1,13 @@
 
 <?php
+<<<<<<< HEAD
 include 'connection.php'; // Include your database connection file
+=======
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+>>>>>>> parent of 0140e45 (video view/upload lts)
 
 try {
     $stmt = $pdo->prepare("SELECT * FROM projects");
@@ -229,6 +236,7 @@ try {
     <?php if ($all_data): ?>
         <?php foreach ($all_data as $row): ?>
             <li class="project-item active" data-filter-item data-category="<?php echo htmlspecialchars($row['category']); ?>">
+<<<<<<< HEAD
                 <?php if (isset($row['id'])): ?>
                     <a href="#" class="open-overlay" data-project-id="<?php echo $row['id']; ?>">
                         <figure class="project-img">
@@ -243,6 +251,18 @@ try {
                 <?php else: ?>
                     <p>Project data is incomplete.</p>
                 <?php endif; ?>
+=======
+                <a href="#" class="project-link" data-image-url="<?php echo htmlspecialchars($row['picture']); ?>" data-title="<?php echo htmlspecialchars($row['title']); ?>" data-subtitle="<?php echo htmlspecialchars($row['subtitle']); ?>">
+                    <figure class="project-img">
+                        <div class="project-item-icon-box">
+                            <ion-icon name="eye-outline"></ion-icon>
+                        </div>
+                        <div class="img-wrapper" style="background-image: url('<?php echo htmlspecialchars($row['picture']); ?>');"></div>
+                    </figure>
+                    <h3 class="project-title"><?php echo htmlspecialchars($row['title']); ?></h3>
+                    <p class="project-category"><?php echo htmlspecialchars($row['subtitle']); ?></p>
+                </a>
+>>>>>>> parent of 0140e45 (video view/upload lts)
             </li>
         <?php endforeach; ?>
     <?php else: ?>
@@ -252,6 +272,7 @@ try {
 
 </section>
 
+<<<<<<< HEAD
 <!-- modalover Container -->
 <div class="modalover-container" id="modaloverContainer">
     <div class="testimonials-modalover">
@@ -261,12 +282,212 @@ try {
         </div>
     </div>
     <div class="overlaypage" id="overlaypage"></div>
+=======
+<!-- Modal for displaying images -->
+<div class="modal-container1" data-modal-container>
+  <div class="overlay1" data-overlay></div>
+
+  <section class="modal1">
+    <button class="modal-close-btn1" data-modal-close-btn>
+      <ion-icon name="close-outline"></ion-icon>
+    </button>
+
+    <div class="modal-img-wrapper1">
+      <img src="" alt="Portfolio Image" data-modal-img>
+    </div>
+
+    <div class="modal-content1">
+      <h4 class="h3 modal-title" data-modal-title></h4>
+      <p data-modal-description></p>
+    </div>
+  </section>
+>>>>>>> parent of 0140e45 (video view/upload lts)
 </div>
+
+
+
+
+
+
+
+
 
 
 <script>
 // Filter functionality for projects
 document.addEventListener('DOMContentLoaded', function () {
+<<<<<<< HEAD
+=======
+  const projectItems = document.querySelectorAll('.project-item');
+  const modalContainer = document.querySelector('[data-modal-container]');
+  const modalImg = document.querySelector('[data-modal-img]');
+  const modalTitle = document.querySelector('[data-modal-title]');
+  const modalDescription = document.querySelector('[data-modal-description]');
+  const closeModalBtn = document.querySelector('[data-modal-close-btn]');
+  const overlay = document.querySelector('[data-overlay]');
+
+  projectItems.forEach(item => {
+    item.addEventListener('click', function (e) {
+      e.preventDefault();
+      const imgSrc = item.querySelector('.img-wrapper').style.backgroundImage.replace(/^url\(['"](.+)['"]\)/, '$1');
+      const title = item.querySelector('.project-title').textContent;
+      const description = item.querySelector('.project-category').textContent;
+
+      modalImg.src = imgSrc;
+      modalTitle.textContent = title;
+      modalDescription.textContent = description;
+
+      modalContainer.classList.add('active');
+      overlay.classList.add('active');
+    });
+  });
+
+  closeModalBtn.addEventListener('click', function () {
+    modalContainer.classList.remove('active');
+    overlay.classList.remove('active');
+  });
+
+  overlay.addEventListener('click', function () {
+    modalContainer.classList.remove('active');
+    overlay.classList.remove('active');
+  });
+});
+
+</script>
+
+
+
+
+<style>
+
+/**
+ * Portfolio Modal Style (Dark Theme with Original Colors)
+ */
+
+ .modal-container1 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto;
+  z-index: 20;
+  pointer-events: none;
+  visibility: hidden;
+  overscroll-behavior: contain;
+}
+
+.modal-container1.active {
+  pointer-events: all;
+  visibility: visible;
+}
+
+.overlay1 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: hsl(0, 0%, 5%); /* Dark background */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.overlay1.active {
+  opacity: 0.85;
+  visibility: visible;
+  pointer-events: all;
+}
+
+.modal1 {
+  background: var(--eerie-black-2, #1b1b1b); /* Same background as the testimonials modal */
+  padding: 20px;
+  margin: 20px;
+  border: 1px solid var(--jet, #333); /* Respecting the darker border */
+  border-radius: 14px;
+  max-width: 90%;
+  width: 600px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.4); /* Darker shadow for depth */
+  transform: scale(0.9);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  z-index: 2;
+}
+
+.modal-container1.active .modal1 {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.modal-close-btn1 {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: var(--onyx, #353535); /* Onyx background */
+  border: none;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  color: var(--white-2, #fff); /* White color for the close icon */
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+.modal-close-btn1:hover {
+  background: #444; /* Slightly lighter on hover */
+}
+
+.modal-img-wrapper1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.modal-img-wrapper1 img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: var(--shadow-2, 0 2px 8px rgba(0, 0, 0, 0.4)); /* Dark shadow */
+}
+
+.modal-content1 h4 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: var(--white-2, #fff); /* Title in white */
+}
+
+.modal-content1 p {
+  font-size: 1rem;
+  color: var(--light-gray, #b3b3b3); /* Light gray for description */
+  line-height: 1.5;
+  margin-bottom: 0;
+}
+
+
+
+</style>
+
+ 
+    
+
+        </section>
+
+        
+
+        
+       <!-- Add the JavaScript code here -->
+       <script>
+        document.addEventListener('DOMContentLoaded', function () {
+>>>>>>> parent of 0140e45 (video view/upload lts)
     const filterButtons = document.querySelectorAll('[data-filter-btn]');
     const projectItems = document.querySelectorAll('.project-item');
 
