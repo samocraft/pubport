@@ -10,6 +10,7 @@ require_once 'connection.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     if (isset($_FILES["files"]) && isset($_FILES["thumbnail"])) { // Check if files are uploaded
         $title = $_POST['title'];
         $subtitle = $_POST['subtitle'];
@@ -121,6 +122,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $uploadOk = 1;
     } else {
 >>>>>>> parent of 0140e45 (video view/upload lts)
+=======
+    $title = $_POST['title'];
+    $subtitle = $_POST['subtitle'];
+    $category = $_POST['category'];
+
+    // File upload handling
+    $target_dir = "uploads/"; // Directory where uploaded files will be stored
+    $target_file = $target_dir . basename($_FILES["picture"]["name"]);
+    $uploadOk = 1;
+    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+    // Check if image file is a actual image or fake image
+    $check = getimagesize($_FILES["picture"]["tmp_name"]);
+    if($check !== false) {
+        $uploadOk = 1;
+    } else {
+>>>>>>> parent of 0140e45 (video view/upload lts)
         echo "File is not an image.";
         $uploadOk = 0;
     }
@@ -173,6 +191,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "Sorry, there was an error uploading your file.";
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of 0140e45 (video view/upload lts)
+=======
 >>>>>>> parent of 0140e45 (video view/upload lts)
 =======
 >>>>>>> parent of 0140e45 (video view/upload lts)
