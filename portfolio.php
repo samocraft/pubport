@@ -2,8 +2,11 @@
 <?php
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 include 'connection.php'; // Include your database connection file
 =======
+=======
+>>>>>>> parent of 0140e45 (video view/upload lts)
 =======
 >>>>>>> parent of 0140e45 (video view/upload lts)
 
@@ -241,6 +244,7 @@ try {
             <li class="project-item active" data-filter-item data-category="<?php echo htmlspecialchars($row['category']); ?>">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <?php if (isset($row['id'])): ?>
                     <a href="#" class="open-overlay" data-project-id="<?php echo $row['id']; ?>">
                         <figure class="project-img">
@@ -258,6 +262,8 @@ try {
 =======
 =======
 >>>>>>> parent of 0140e45 (video view/upload lts)
+=======
+>>>>>>> parent of 0140e45 (video view/upload lts)
                 <a href="#" class="project-link" data-image-url="<?php echo htmlspecialchars($row['picture']); ?>" data-title="<?php echo htmlspecialchars($row['title']); ?>" data-subtitle="<?php echo htmlspecialchars($row['subtitle']); ?>">
                     <figure class="project-img">
                         <div class="project-item-icon-box">
@@ -269,6 +275,9 @@ try {
                     <p class="project-category"><?php echo htmlspecialchars($row['subtitle']); ?></p>
                 </a>
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of 0140e45 (video view/upload lts)
+=======
 >>>>>>> parent of 0140e45 (video view/upload lts)
 =======
 >>>>>>> parent of 0140e45 (video view/upload lts)
@@ -283,6 +292,7 @@ try {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <!-- modalover Container -->
 <div class="modalover-container" id="modaloverContainer">
     <div class="testimonials-modalover">
@@ -293,6 +303,8 @@ try {
     </div>
     <div class="overlaypage" id="overlaypage"></div>
 =======
+=======
+>>>>>>> parent of 0140e45 (video view/upload lts)
 =======
 >>>>>>> parent of 0140e45 (video view/upload lts)
 <!-- Modal for displaying images -->
@@ -314,6 +326,9 @@ try {
     </div>
   </section>
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of 0140e45 (video view/upload lts)
+=======
 >>>>>>> parent of 0140e45 (video view/upload lts)
 =======
 >>>>>>> parent of 0140e45 (video view/upload lts)
@@ -333,7 +348,10 @@ try {
 document.addEventListener('DOMContentLoaded', function () {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of 0140e45 (video view/upload lts)
 =======
 >>>>>>> parent of 0140e45 (video view/upload lts)
   const projectItems = document.querySelectorAll('.project-item');
