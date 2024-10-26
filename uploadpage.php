@@ -258,7 +258,7 @@ if (isset($_POST['logout'])) {
                 
       
                 <input type="text" id="subtitle" name="subtitle" class="form-input" placeholder="subtitle" >
-                 <input type="file" name="file" accept="image/*,video/*" required> <!-- Changed to name="file" -->
+                <input type="file" id="picture" name="picture" class="form-input" accept="image/*" required placeholder="Add file" >
                 
                 <div class="category-options">
 >>>>>>> parent of 0140e45 (video view/upload lts)
