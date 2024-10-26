@@ -1,8 +1,11 @@
 
 <?php
 <<<<<<< HEAD
+<<<<<<< HEAD
 include 'connection.php'; // Include your database connection file
 =======
+=======
+>>>>>>> parent of 0140e45 (video view/upload lts)
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -237,6 +240,7 @@ try {
         <?php foreach ($all_data as $row): ?>
             <li class="project-item active" data-filter-item data-category="<?php echo htmlspecialchars($row['category']); ?>">
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <?php if (isset($row['id'])): ?>
                     <a href="#" class="open-overlay" data-project-id="<?php echo $row['id']; ?>">
                         <figure class="project-img">
@@ -252,6 +256,8 @@ try {
                     <p>Project data is incomplete.</p>
                 <?php endif; ?>
 =======
+=======
+>>>>>>> parent of 0140e45 (video view/upload lts)
                 <a href="#" class="project-link" data-image-url="<?php echo htmlspecialchars($row['picture']); ?>" data-title="<?php echo htmlspecialchars($row['title']); ?>" data-subtitle="<?php echo htmlspecialchars($row['subtitle']); ?>">
                     <figure class="project-img">
                         <div class="project-item-icon-box">
@@ -262,6 +268,9 @@ try {
                     <h3 class="project-title"><?php echo htmlspecialchars($row['title']); ?></h3>
                     <p class="project-category"><?php echo htmlspecialchars($row['subtitle']); ?></p>
                 </a>
+<<<<<<< HEAD
+>>>>>>> parent of 0140e45 (video view/upload lts)
+=======
 >>>>>>> parent of 0140e45 (video view/upload lts)
             </li>
         <?php endforeach; ?>
@@ -273,6 +282,7 @@ try {
 </section>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 <!-- modalover Container -->
 <div class="modalover-container" id="modaloverContainer">
     <div class="testimonials-modalover">
@@ -283,6 +293,8 @@ try {
     </div>
     <div class="overlaypage" id="overlaypage"></div>
 =======
+=======
+>>>>>>> parent of 0140e45 (video view/upload lts)
 <!-- Modal for displaying images -->
 <div class="modal-container1" data-modal-container>
   <div class="overlay1" data-overlay></div>
@@ -301,6 +313,9 @@ try {
       <p data-modal-description></p>
     </div>
   </section>
+<<<<<<< HEAD
+>>>>>>> parent of 0140e45 (video view/upload lts)
+=======
 >>>>>>> parent of 0140e45 (video view/upload lts)
 </div>
 
@@ -317,7 +332,10 @@ try {
 // Filter functionality for projects
 document.addEventListener('DOMContentLoaded', function () {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of 0140e45 (video view/upload lts)
   const projectItems = document.querySelectorAll('.project-item');
   const modalContainer = document.querySelector('[data-modal-container]');
   const modalImg = document.querySelector('[data-modal-img]');
