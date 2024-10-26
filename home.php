@@ -12,7 +12,7 @@ $all_data = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
 <br><br>
         <header>
-          <h2 class="h2 article-title">About me</h2>
+          <h2 class="articletitlenext article-title">About me</h2>
         </header>
 
         <section class="about-text">
