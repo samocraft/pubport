@@ -229,6 +229,7 @@ if (isset($_POST['logout'])) {
       
             
       
+<<<<<<< HEAD
           
                  <!-- Updated Form -->
                  <form action="uploadold.php" class="form" data-form method="POST" enctype="multipart/form-data">
@@ -249,6 +250,18 @@ if (isset($_POST['logout'])) {
 
                         <!-- Category Options (unchanged) -->
                         <div class="category-options">
+=======
+            <form action="uploadold.php" class="form" data-form method="POST" enctype="multipart/form-data">
+      
+              <div class="input-wrapper">
+                <input type="text" id="title" name="title" required class="form-input" placeholder="title">
+                
+      
+                <input type="text" id="subtitle" name="subtitle" class="form-input" placeholder="subtitle" >
+                <input type="file" id="picture" name="picture" class="form-input" accept="image/*" required placeholder="Add file" >
+                
+                <div class="category-options">
+>>>>>>> parent of 0140e45 (video view/upload lts)
                     <label for="web_mobile_app" style="color: #ffffff;">
                         <input type="radio" id="web_mobile_app" name="category" value="web/mobile app" required>
                         <span class="custom-radio custom-primary">Web/Mobile App</span>
