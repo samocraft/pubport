@@ -3,7 +3,7 @@ $html = <<<HTML
 
 
         <header>
-          <h2 class="h2 article-title">Resume</h2>
+          <h2 class="articletitlenext article-title">Resume</h2>
         </header>
 
         <section class="timeline">

@@ -1,5 +1,5 @@
 <header>
-          <h2 class="h2 article-title">Contact</h2>
+          <h2 class="articletitlenext article-title">Contact</h2>
         </header>
 
         <section class="mapbox" data-mapbox>

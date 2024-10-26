@@ -17,217 +17,156 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio</title>
     
-    
-<!-- Your CSS for the overlaypage -->
-<style>
-        
-        .modalover-container {
-            position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          z-index: 20;
-          pointer-events: none;
-          visibility: hidden;
-          overflow-y: auto;
-          
-        }
-        
-        .modalover-container.active {
-          pointer-events: all;
-          visibility: visible;
-        }
-        
-        .overlaypage {
-            position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100vh;
-          backdrop-filter: blur(10px); /* Blur the background */
-          background: rgba(0, 0, 0, 0.3); /* Darken the background */
-          opacity: 1;
-          visibility: hidden;
-          pointer-events: none;
-          z-index: 1;
-          transition: var(--transition-1);
-        }
-        
-        .overlaypage.active {
-          visibility: visible;
-          pointer-events: all;
-        }
-        
-        .testimonials-modalover {
-            background: var(--eerie-black-2);
-          position: relative;
-          padding: 15px;
-          border: 1px solid var(--jet);
-          border-radius: 14px;
-          box-shadow: var(--shadow-5);
-          transform: scale(1.2);
-          opacity: 0;
-          transition: var(--transition-1);
-          z-index: 2;
-          width: 60%; /* Fixed width */
-          max-width: 800px; /* Limit max width */
-          max-height: 90vh; /* Keep the modal within viewport */
-          margin: 10vh auto;
-          overflow-y: auto; /* Enable internal scrolling */
-          
-          
-        }
-        
-        .modalover-container.active .testimonials-modalover {
-          transform: scale(1);
-          opacity: 1;
-        }
-        
-        .modalover-close-btn {
-          position: absolute;
-          top: 1%;
-          right: 15px;
-          background: var(--onyx);
-          border-radius: 8px;
-          width: 32px;
-          height: 32px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          color: var(--white-2);
-          font-size: 18px;
-          opacity: 0.7;
-        }
-        
-        .modalover-close-btn:hover,
-        .modalover-close-btn:focus {
-          opacity: 1;
-        }
-        
-        .modalover-close-btn ion-icon {
-          --ionicon-stroke-width: 50px;
-        }
-        
-        .modalover-title {
-          margin-bottom: 4px;
-        }
-        
-        .project-gallery img,
-        .project-gallery video {
-          max-width: 100%;
-          justify-content: center;
-          ;
-        }
-        
-        .modalover-content {
-          padding: 15px;
-          justify-content: center;
-        }
-            </style>
-
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="shortcut icon" href="./assets/images/Screenshot 2024-07-15 185357.png" type="image/x-icon">
     <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+    <style>
+       
+        /* Responsive filter styles */
+        .filter-select-box {
+            position: relative;
+            margin-bottom: 25px;
+            display: none; /* Default hidden, shown only on mobile */
+        }
+
+        .filter-select {
+            background: var(--eerie-black-2);
+            color: var(--light-gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--jet);
+            border-radius: 14px;
+            font-size: var(--fs-6);
+            font-weight: var(--fw-300);
+            cursor: pointer;
+        }
+
+        .filter-select.active .select-icon {
+            transform: rotate(0.5turn);
+        }
+
+        .select-list {
+            background: var(--eerie-black-2);
+            position: absolute;
+            top: calc(100% + 6px);
+            width: 100%;
+            padding: 6px;
+            border: 1px solid var(--jet);
+            border-radius: 14px;
+            z-index: 2;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity 0.15s ease-in-out, visibility 0.15s ease-in-out;
+        }
+
+        .filter-select.active + .select-list {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: all;
+        }
+
+        .select-item button {
+            background: var(--eerie-black-2);
+            color: var(--light-gray);
+            font-size: var(--fs-6);
+            font-weight: var(--fw-300);
+            text-transform: capitalize;
+            width: 100%;
+            padding: 8px 10px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .select-item button:hover {
+            background: hsl(240, 2%, 20%);
+        }
+
+        /* Filter list for larger screens */
+        .filter-list {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 25px;
+            padding-left: 5px;
+            margin-bottom: 30px;
+        }
+
+        .filter-item button {
+            color: var(--light-gray);
+            font-size: var(--fs-5);
+            transition: color 0.3s;
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+
+        .filter-item button:hover {
+            color: var(--light-gray-70);
+        }
+
+        .filter-item button.active {
+            color: var(--orange-yellow-crayola);
+        }
+
+        /* Responsive layout for mobile */
+        @media (max-width: 768px) {
+            .filter-list {
+                display: none;
+            }
+
+            .filter-select-box {
+                display: block;
+            }
+        }
+    </style>
 </head>
 <body>
 
 <header>
-    <h2 class="h2 article-title">Portfolio</h2>
+    <h2 class="articletitlenext article-title">Portfolio</h2>
 </header>
 
-<section class="projects">
-
-    <!-- Filter list for different project categories -->
-    <ul class="filter-list">
-        <li class="filter-item"><button class="active" data-filter-btn>All</button></li>
-        <li class="filter-item"><button data-filter-btn>web/mobile app</button></li>
-        <li class="filter-item"><button data-filter-btn>Infographics</button></li>
-        <li class="filter-item"><button data-filter-btn>Video editing</button></li>
-        <li class="filter-item"><button data-filter-btn>motion graphics</button></li>
-        <li class="filter-item"><button data-filter-btn>3D art</button></li>
-        <li class="filter-item"><button data-filter-btn>3D animations/VFX</button></li>
+<!-- Filter list for larger screens -->
+<ul class="filter-list">
+        <li class="filter-item"><button class="active" data-filter="all">All</button></li>
+        <li class="filter-item"><button data-filter="web/mobile app">Web/Mobile App</button></li>
+        <li class="filter-item"><button data-filter="infographics">Infographics</button></li>
+        <li class="filter-item"><button data-filter="video editing">Video Editing</button></li>
+        <li class="filter-item"><button data-filter="motion graphics">Motion Graphics</button></li>
+        <li class="filter-item"><button data-filter="3d art">3D Art</button></li>
+        <li class="filter-item"><button data-filter="3d animations/vfx">3D Animations/VFX</button></li>
     </ul>
 
     <!-- Filter select for mobile/responsive design -->
     <div class="filter-select-box">
-
-            <button class="filter-select" data-select>
-
-              <div class="select-value" data-selecct-value>Select category</div>
-
-              <div class="select-icon">
-                <ion-icon name="chevron-down"></ion-icon>
-              </div>
-
-            </button>
-
-            <ul class="select-list">
-
-              <li class="select-item">
-                <button data-select-item>All</button>
-              </li>
-
-              <li class="select-item">
-                <button data-select-item>Web design</button>
-              </li>
-
-              <li class="select-item">
-                <button data-select-item>Applications</button>
-              </li>
-
-              <li class="select-item">
-                <button data-select-item>Web development</button>
-              </li>
-
-            </ul>
-
-          </div>
-
-          <script>
-            document.addEventListener('DOMContentLoaded', function () {
-  // Select all filter buttons and project items
-  const filterButtons = document.querySelectorAll('[data-filter-btn]');
-  const projectItems = document.querySelectorAll('[data-filter-item]');
-
-  // Add click event to each filter button
-  filterButtons.forEach(button => {
-    button.addEventListener('click', function () {
-      const category = this.textContent.toLowerCase(); // Get the category from button text
-
-      // Remove 'active' class from all buttons, then add it to the clicked button
-      filterButtons.forEach(btn => btn.classList.remove('active'));
-      this.classList.add('active');
-
-      // Loop through each project item
-      projectItems.forEach(item => {
-        const itemCategory = item.getAttribute('data-category').toLowerCase();
-
-        // If 'All' is clicked or item matches the category, display it
-        if (category === 'all' || itemCategory === category) {
-          item.style.display = 'block';
-          item.classList.add('active');
-        } else {
-          // Hide items that don't match
-          item.style.display = 'none';
-          item.classList.remove('active');
-        }
-      });
-    });
-  });
-});
-          </script>
+        <div class="filter-select" data-select>
+            <span class="select-value">Select Category</span>
+            <ion-icon name="chevron-down"></ion-icon>
+        </div>
+        <ul class="select-list">
+            <li class="select-item"><button data-filter="all">All</button></li>
+            <li class="select-item"><button data-filter="web/mobile app">Web/Mobile App</button></li>
+            <li class="select-item"><button data-filter="infographics">Infographics</button></li>
+            <li class="select-item"><button data-filter="video editing">Video Editing</button></li>
+            <li class="select-item"><button data-filter="motion graphics">Motion Graphics</button></li>
+            <li class="select-item"><button data-filter="3d art">3D Art</button></li>
+            <li class="select-item"><button data-filter="3d animations/vfx">3D Animations/VFX</button></li>
+        </ul>
+    </div>
 
 
+<section class="projects">
 
     <!-- List of projects -->
     <ul class="project-list">
     <?php if ($all_data): ?>
         <?php foreach ($all_data as $row): ?>
-            <li class="project-item active" data-filter-item data-category="<?php echo htmlspecialchars($row['category']); ?>">
+            <li class="project-item active" data-category="<?php echo htmlspecialchars($row['category']); ?>">
                 <?php if (isset($row['id'])): ?>
                     <a href="#" class="open-overlay" data-project-id="<?php echo $row['id']; ?>">
                         <figure class="project-img">
@@ -262,39 +201,66 @@ try {
     <div class="overlaypage" id="overlaypage"></div>
 </div>
 
-
-<script>
-// Filter functionality for projects
-document.addEventListener('DOMContentLoaded', function () {
-    const filterButtons = document.querySelectorAll('[data-filter-btn]');
-    const projectItems = document.querySelectorAll('.project-item');
-
-    filterButtons.forEach(button => {
-        button.addEventListener('click', function () {
-            const filterCategory = this.textContent.toLowerCase().trim();
-
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            this.classList.add('active');
-
-            projectItems.forEach(item => {
-                const itemCategory = item.getAttribute('data-category').toLowerCase().trim();
-                if (filterCategory === 'all' || itemCategory === filterCategory) {
-                    item.style.display = 'block';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-        });
-    });
-});
-</script>
-
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const projectLinks = document.querySelectorAll('.open-overlay');
     const modaloverContainer = document.getElementById('modaloverContainer');
     const overlaypage = document.getElementById('overlaypage');
     const closemodaloverButton = document.getElementById('closemodalover');
+    const filterButtons = document.querySelectorAll('.filter-list button');
+    const dropdownButtons = document.querySelectorAll('.select-item button');
+    const projectItems = document.querySelectorAll('.project-item');
+    const selectBox = document.querySelector('.filter-select');
+    const selectList = document.querySelector('.select-list');
+    const selectValue = document.querySelector('.select-value');
+
+    // Function to apply filter
+    function applyFilter(category) {
+        projectItems.forEach(item => {
+            const itemCategory = item.getAttribute('data-category').toLowerCase();
+            item.style.display = (category === 'all' || itemCategory === category) ? 'block' : 'none';
+        });
+    }
+
+    // Set active button styles
+    function setActiveButton(buttons, category) {
+        buttons.forEach(button => {
+            button.classList.toggle('active', button.getAttribute('data-filter') === category);
+        });
+    }
+
+    // Desktop filter click event
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const category = this.getAttribute('data-filter');
+            applyFilter(category);
+            setActiveButton(filterButtons, category);
+        });
+    });
+
+    // Mobile dropdown filter click events
+    dropdownButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const category = this.getAttribute('data-filter');
+            applyFilter(category);
+            setActiveButton(dropdownButtons, category);
+            selectValue.textContent = this.textContent; // Update the selected value in the dropdown
+            selectBox.classList.remove('active'); // Close the dropdown
+        });
+    });
+
+    // Toggle dropdown visibility on mobile
+    selectBox.addEventListener('click', function(event) {
+        event.stopPropagation(); // Prevent the click from bubbling to document
+        selectBox.classList.toggle('active');
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(event) {
+        if (!selectBox.contains(event.target)) {
+            selectBox.classList.remove('active');
+        }
+    });
 
     // Function to close the overlay
     function closemodalover() {
@@ -332,7 +298,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
-
 
 </body>
 </html>

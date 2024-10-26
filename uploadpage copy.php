@@ -1,8 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 session_start();
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.html");
@@ -222,7 +218,7 @@ if (isset($_POST['logout'])) {
   
   
           <header>
-            <h2 class="articletitlenext article-title">add project</h2>
+            <h2 class="h2 article-title">add project</h2>
           </header>
   
           <section class="contact-form">
@@ -231,19 +227,21 @@ if (isset($_POST['logout'])) {
       
           
                  <!-- Updated Form -->
-                 <form action="uploadold.php" class="form" method="POST" enctype="multipart/form-data">
-    <div class="input-wrapper">
-        <input type="text" id="title" name="title" required class="form-input" placeholder="title">
-        <input type="text" id="subtitle" name="subtitle" class="form-input" placeholder="subtitle">
+                 <form action="uploadold.php" class="form" data-form method="POST" enctype="multipart/form-data">
+                    <div class="input-wrapper">
+                        <input type="text" id="title" name="title" required class="form-input" placeholder="title">
+                        <input type="text" id="subtitle" name="subtitle" class="form-input" placeholder="subtitle">
+                        
+                        <!-- Multiple file inputs for images and videos -->
+                        <label for="images">Upload Images</label>
+                        <input type="file" id="images" name="files[]" accept="image/*" multiple class="form-input">
 
-        <label for="images">Upload Images</label>
-        <input type="file" id="images" name="images[]" accept="image/*" multiple required class="form-input">
+                        <label for="videos">Upload Videos</label>
+                        <input type="file" id="videos" name="files[]" accept="video/*" multiple class="form-input">
 
-        <label for="videos">Upload Videos</label>
-        <input type="file" id="videos" name="videos[]" accept="video/*" multiple required class="form-input">
-
-        <label for="thumbnail">Select Thumbnail</label>
-        <input type="file" id="thumbnail" name="thumbnail" accept="image/*" required class="form-input">
+                        <!-- Thumbnail selection -->
+                        <label for="thumbnail">Select Thumbnail</label>
+                        <input type="file" id="thumbnail" name="thumbnail" accept="image/*" required class="form-input">
 
                         <!-- Category Options (unchanged) -->
                         <div class="category-options">
@@ -276,10 +274,10 @@ if (isset($_POST['logout'])) {
 
                         <!-- Submission button -->
                         <div style="display: flex; justify-content: center; align-items: center;">
-                        <button class="form-btn" type="submit">
-            <ion-icon name="paper-plane"></ion-icon>
-            <span>Upload</span>
-        </button>
+                          <button class="form-btn" type="submit" >
+                            <ion-icon name="paper-plane"></ion-icon>
+                            <span>Upload</span>
+                          </button>
                         </div>
                     </div>
                 </form>

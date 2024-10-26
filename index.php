@@ -60,11 +60,11 @@ $all_data = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
       <div class="sidebar-info">
 
       
-      <a href="uploadpage.php">
+
   <figure class="avatar-box">
     <img src="./assets/images/my-avatar.png" alt="Seddiki Oussama" width="80">
   </figure>
-</a>
+
       
 
         <div class="info-content">
@@ -135,21 +135,22 @@ $all_data = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
         <div class="separator"></div>
 
         <ul class="social-list">
-
+<!--
           <li class="social-item">
             <a href="#" class="social-link">
               <ion-icon name="logo-facebook"></ion-icon>
             </a>
           </li>
+          -->
 
           <li class="social-item">
-            <a href="#" class="social-link">
+            <a href="https://x.com/samocraft12" class="social-link">
               <ion-icon name="logo-twitter"></ion-icon>
             </a>
           </li>
 
           <li class="social-item">
-            <a href="#" class="social-link">
+            <a href="https://www.instagram.com/oussama.seddiki1/" class="social-link">
               <ion-icon name="logo-instagram"></ion-icon>
             </a>
           </li>
